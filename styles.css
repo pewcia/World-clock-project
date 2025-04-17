@@ -1,7 +1,7 @@
 body{
-    background-image: url("photos/tło.jpg");
+    background-image: url("photos/foto2.jpg");
     background-size:cover;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     backface-visibility: hidden;
     background-color: white ;
 }
@@ -50,10 +50,12 @@ body{
 }
 
 footer {
-    color:rgb(63, 62, 62);
+    color:rgb(230, 233, 240);
     font-size: 12px;
     margin-top: 40px;
     text-align: center;
+    margin-bottom: 2px auto;
+    ;
 }
 
 a {
@@ -78,7 +80,7 @@ hr {
 }
 .city {
 
-  font-size: 52px;
+  font-size: 48px;
   font-weight: bold;
   color: rgb(52, 25, 116);
   text-align: left;
@@ -99,7 +101,7 @@ hr {
 }
 
 .time {
-  font-size: 52px;
+  font-size: 48px;
   font-weight: bold;
   color: #000;
   text-align: right;

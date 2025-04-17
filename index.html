@@ -4,12 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.47/moment-timezone-with-data-1970-2030.js"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"
-    ></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.47/moment-timezone-with-data-1970-2030.js"></script>
     <title>World Clock</title>
   </head>
   <body>
@@ -17,16 +13,15 @@
   <select class="dropdown">
     <option value="">Select a city..</option>
     <option value="Europe/Amsterdam">Amsterdam</option>
-    <option value="Europe/Warsaw">Warszawa</option>
-    <option value="Europe/Tirane">Tirana</option>
-    <option value="Europe/London">London</option>
+    <option value="Europe/Warsaw">Warsaw</option>
+    <option value="Europe/London">Madrid</option>
   </select>
 
   <div class="cities">
     <div class="row">
         <div class="cityClock">
-      <span class="city">Amsterdam </span>
-      <span class="time">09:30:45</span>
+      <span class="city" id="amsterdam"value="Europe/Amsterdam">Amsterdam </span>
+      <span class="time"><strong> 09:30:45</strong></span>
       </div>
       <img src="photos/amsterdam.png"/>
       <span class="date">14 maj 2025</span>
@@ -34,8 +29,8 @@
   <hr />
    <div class="row">
         <div class="cityClock">
-      <span class="city"> Warsaw </span>
-      <span class="time">09:30:45</span>
+      <span class="city" id="warsaw" value="Europe/Warsaw"> Warsaw </span>
+      <span class="time"><strong> 09:30:45</strong></span>
       </div>
       <img src="photos/poland.png"/>
       <span class="date">14 maj 2025</span>
@@ -43,8 +38,8 @@
   <hr />
    <div class="row">
         <div class="cityClock">
-      <span class="city"> Madrid </span>
-      <span class="time">09:30:45</span>
+      <span class="city" id="madrid" value="Europe/Madrid"> Madrid </span>
+      <span class="time"><strong> 09:30:45</strong></span>
       </div>
       <img src="photos/spain.png"/>
       <span class="date">14 maj 2025 </span>
@@ -58,6 +53,6 @@
       <a href="https://github.com/pewcia/World-clock-project">Github</a> hosted
       at <a href="https://illustrious-moonbeam-db5bc2.netlify.app/">Netlify</a>
     </footer>
-    <style src="index.js"></style>
+    <script src="index.js"></script>
   </body>
 </html>
