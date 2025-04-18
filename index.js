@@ -1,61 +1,81 @@
+let selectedCityInterval = null;
 
-function updateCity (event){
-    let cityTimeZone=event.target.value;
-    let cityTime=moment().tz(cityTimeZone);
-    let citiesElement=document.querySelector(".cities");
-    let cityName=cityTimeZone.replace("_", "").split("/")[1];
-    citiesElement.innerHTML=
-   
-`
-<div class="row">
-        <div class="cityClock">
-      <span class="city" id="amsterdam"value="Europe/Amsterdam">${cityName} </span>
-      <span class="time"><strong> ${cityTime.format("HH:mm:ss")}</strong></span>
-      </div>
-      <span class="date">${cityTime.format("MMMM Do YYYY")}</span>
-   </div>`;
+function updateTime(id, timezone) {
+  let element = document.querySelector(`#${id}`);
+  if (!element) return;
 
+  let row = element.closest(".row");
+  let date = row.querySelector(".date");
+  let time = row.querySelector(".time");
+
+  let now = moment().tz(timezone);
+  date.innerHTML = now.format("MMMM Do YYYY");
+  time.innerHTML = `<strong>${now.format("HH:mm:ss")}</strong>`;
 }
-
-updateMadridTime();
-
-
-
-function updateMadridTime() {
-let madridElement=document.querySelector("#madrid");
-let madridRow = madridElement.closest(".row");
-let madridDateElement=madridRow.querySelector(".date");
-let madridTimeElement = madridRow.querySelector(".time");
-let madridTime = moment().tz("Europe/Madrid");
-madridDateElement.innerHTML= madridTime.format("MMMM Do YYYY");
-madridTimeElement.innerHTML = madridTime.format("HH:mm:ss ");
-}
-
-setInterval(updateMadridTime,1000);
-
-function updateAmsterdamTime() {
-  let amsterdamElement = document.querySelector("#amsterdam");
-  let amsterdamRow = amsterdamElement.closest(".row");
-  let amsterdamDateElement = amsterdamRow.querySelector(".date");
-  let amsterdamTimeElement = amsterdamRow.querySelector(".time");
-  let amsterdamTime = moment().tz("Europe/Amsterdam");
-  amsterdamDateElement.innerHTML = amsterdamTime.format("MMMM Do YYYY");
-  amsterdamTimeElement.innerHTML = amsterdamTime.format("HH:mm:ss ");
-}
-
-setInterval(updateAmsterdamTime, 1000);
 
 function updateWarsawTime() {
-  let warsawElement = document.querySelector("#warsaw");
-  let warsawRow = warsawElement.closest(".row");
-  let warsawDateElement = warsawRow.querySelector(".date");
-  let warsawTimeElement = warsawRow.querySelector(".time");
-  let warsawTime = moment().tz("Europe/Warsaw");
-  warsawDateElement.innerHTML = warsawTime.format("MMMM Do YYYY");
-  warsawTimeElement.innerHTML = warsawTime.format("HH:mm:ss ");
+  updateTime("warsaw", "Europe/Warsaw");
 }
 
-setInterval(updateWarsawTime, 1000);
+function updateAmsterdamTime() {
+  updateTime("amsterdam", "Europe/Amsterdam");
+}
+
+function updateMadridTime() {
+  updateTime("madrid", "Europe/Madrid");
+}
+
+updateWarsawTime();
+updateAmsterdamTime();
+updateMadridTime();
+
+setInterval(() => {
+  updateWarsawTime();
+  updateAmsterdamTime();
+  updateMadridTime();
+}, 1000);
+
+function updateCity(event) {
+  let cityTimeZone = event.target.value;
+  if (!cityTimeZone) return;
+
+  if (selectedCityInterval) {
+    clearInterval(selectedCityInterval);
+  }
+
+  let cityName = cityTimeZone.split("/")[1].replace("_", " ");
+  let citiesElement = document.querySelector(".cities");
+
+  citiesElement.innerHTML = `
+    <div class="row">
+      <div class="cityClock">
+        <span class="city" id="custom">${cityName}</span>
+        <span class="time"><strong></strong></span>
+      </div>
+      <span class="date"></span>
+      <br>
+      <button id="back-button">⬅ </button>
+    </div>
+  `;
+
+  function updateSelected() {
+    let now = moment().tz(cityTimeZone);
+    let time = document.querySelector(".time");
+    let date = document.querySelector(".date");
+    if (time && date) {
+      time.innerHTML = `<strong>${now.format("HH:mm:ss")}</strong>`;
+      date.innerHTML = now.format("MMMM Do YYYY");
+    }
+  }
+
+  updateSelected();
+  selectedCityInterval = setInterval(updateSelected, 1000);
+
+  document.querySelector("#back-button").addEventListener("click", function () {
+    clearInterval(selectedCityInterval);
+    location.reload();
+  });
+}
 
 let citiesSelect = document.querySelector("#city");
 citiesSelect.addEventListener("change", updateCity);

@@ -6,7 +6,21 @@ body{
     background-color: white ;
 }
 
-
+button{
+    padding: 8px 40px;
+    margin-top: 40px;
+    border-radius: 20px;
+    font-size: 32px;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+   
+    
+}
+button:hover {
+    background-color: white;
+    
+    
+}
 
 .container{
     max-width: 60%;
