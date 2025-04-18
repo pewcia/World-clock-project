@@ -23,8 +23,9 @@ button:hover {
 }
 
 .container{
-    max-width: 60%;
-    margin: 0 auto;
+    width:100%;
+    max-width: 600px;
+    margin: 20px auto;
     border: 6px solid rgb(42, 27, 78);
     background-color:azure;
     display:flex;
